@@ -1,5 +1,6 @@
 package BlocgApplication.BlocgApplication.models.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import java.util.Set;
 @Setter
 @Entity
 @NoArgsConstructor
+
 public class Post {
     //id title content
 
@@ -27,5 +29,15 @@ public class Post {
     @OneToMany(mappedBy = "post")
     private Set<PostCommet> comments = new HashSet<>();
 
+    public Post(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
+    public void addComment(PostCommet postCommet) {
+        comments.add(postCommet);
+        postCommet.setPost(this);
+
+    }
 }
 
