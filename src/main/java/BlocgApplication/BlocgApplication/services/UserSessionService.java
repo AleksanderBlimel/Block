@@ -42,7 +42,16 @@ public class UserSessionService {
         userDto = modelMapper.map(user, UserDto.class);
         logged = true;
         return logged;
+
+
+
     }
 
+
+    public boolean logout() {
+        logged = false;
+        userDto = null;
+        return true;
+    }
 
 }
