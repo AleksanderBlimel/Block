@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @NoArgsConstructor
-public class PostCommet {
+public class PostComment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

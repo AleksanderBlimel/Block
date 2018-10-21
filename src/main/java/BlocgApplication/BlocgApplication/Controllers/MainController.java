@@ -1,16 +1,14 @@
 package BlocgApplication.BlocgApplication.Controllers;
 
 import BlocgApplication.BlocgApplication.models.entities.Post;
-import BlocgApplication.BlocgApplication.models.entities.PostCommet;
+import BlocgApplication.BlocgApplication.models.entities.PostComment;
 import BlocgApplication.BlocgApplication.repositories.PostRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,10 +36,10 @@ public class MainController {
                           @RequestParam(value = "content") String content){
 
         Post post = new Post(titleParam, content);
-        PostCommet postCommet = new PostCommet();
-        postCommet.setComment(titleParam);
+        PostComment postComment = new PostComment();
+        postComment.setComment(titleParam);
 
-        post.addComment(postCommet);
+        post.addComment(postComment);
         postRepository.save(post);
 
         return "index";

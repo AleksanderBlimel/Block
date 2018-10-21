@@ -1,6 +1,5 @@
 package BlocgApplication.BlocgApplication.models.entities;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,17 +25,24 @@ public class Post {
     @Embedded
     private AuditeEntity audit = new AuditeEntity();
 
-    @OneToMany(mappedBy = "post")
-    private Set<PostCommet> comments = new HashSet<>();
+    @OneToMany(mappedBy = "post" , cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private Set<PostComment> comments = new HashSet<>();
 
     public Post(String title, String content) {
         this.title = title;
         this.content = content;
     }
 
-    public void addComment(PostCommet postCommet) {
-        comments.add(postCommet);
-        postCommet.setPost(this);
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    @Getter
+    @Setter
+    private User user;
+
+
+    public void addComment(PostComment postComment) {
+        comments.add(postComment);
+        postComment.setPost(this);
 
     }
 }
